@@ -37,9 +37,9 @@ export default function DynamicPage({ pageContext }: any) {
         const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
           pageContext;
         console.log({ pageContext });
-        if (isLive && !requiresLogin) {
-          return <IPage pageContext={pageContext} />;
-        }
+        // if (isLive && !requiresLogin) {
+        return <IPage pageContext={pageContext} />;
+        // }
         // const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
         //   pageContext;
 
@@ -92,16 +92,16 @@ export const getStaticProps = async (context: {
   const currentSlug = !params.slug ? "" : params.slug.join("/");
 
   try {
-    const pageData = await getIPageByRouteUrl(currentSlug);
+    const data = await getIPageByRouteUrl(currentSlug);
 
-    if (pageData.message) {
+    if (data.message) {
       throw new Error("Page data not found");
     }
-    const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
-      pageData.ipageData;
+    const { id, routeUrl, sourceURL, pageTitle, requiresLogin, isLive } =
+      data.pageData;
     const pageContext = {
       id,
-      routedURL,
+      routeUrl,
       sourceURL,
       pageTitle,
       requiresLogin,
