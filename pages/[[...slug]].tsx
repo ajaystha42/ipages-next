@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { GetStaticPaths } from "next";
 import Home from "../components/Home";
 import { getIPageByRouteUrl } from "../services/iPage";
+import ErrorComponent from "./error";
 
 export default function DynamicPage({ pageContext }: any) {
   const loggedIn = useLoggedIn();
@@ -21,6 +22,7 @@ export default function DynamicPage({ pageContext }: any) {
 
   const { slug } = router.query;
   console.log({ pageContext });
+  if (!pageContext) return <ErrorComponent />;
   const pathname = router.query;
 
   if (loggedIn) {
@@ -79,11 +81,9 @@ export const getStaticProps = async (context: {
   const { params, preview = null } = context;
 
   const currentSlug = !params.slug ? "" : params.slug.join("/");
-  console.log({ currentSlug });
 
   try {
     const pageData = await getIPageByRouteUrl(currentSlug);
-    console.log({ pageData });
 
     if (pageData.message) {
       throw new Error("Page data not found");
