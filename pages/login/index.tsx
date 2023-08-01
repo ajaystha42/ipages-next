@@ -50,8 +50,7 @@ const Login = () => {
     <div className="mx-auto my-10 max-w-md rounded-xl border px-4 py-10 text-gray-700 shadow-lg sm:px-8">
       <div className="mb-16 flex justify-between">
         <span className="font-bold">
-          <span className="inline-block h-3 w-3 bg-blue-600"></span>{" "}
-          Fusemachines
+          <span className="inline-block h-3 w-3 bg-blue-600"></span> Husslup
         </span>
         {!isLogin ? (
           <span className="">

@@ -11,18 +11,18 @@ const IPages = [
   {
     id: 2,
     routedURL: "",
-    sourceURL: "https://xznapp.com/iPageTest/",
+    sourceURL: "https://mkt.husslup.com/iPageTest1/",
     pageTitle: "Other Page",
     requiresLogin: true,
     isLive: true,
+    preview: "",
   },
   {
     id: 3,
-
     routedURL: "a/b/c",
     sourceURL: "https://xznapp.com/iPageTest/",
     pageTitle: "Other Page",
-    requiresLogin: false,
+    requiresLogin: true,
     isLive: false,
   },
   {
@@ -41,7 +41,9 @@ exports.getAllIPages = (req, res, next) => {
 
 exports.getIpageByRoutedUrl = (req, res, next) => {
   const routedUrl = req.query.routeUrl;
+  const preview = req.query.preview;
   console.log({ routedUrl });
+  // database query in the future
   const IpageData = IPages.find((ipage) => ipage.routedURL == routedUrl);
   console.log({ IpageData });
   // check requiresLogin and isLive here

@@ -5,6 +5,7 @@ import { GetStaticPaths } from "next";
 import Home from "../components/Home";
 import { getIPageByRouteUrl } from "../services/iPage";
 import ErrorComponent from "./error";
+import IPage from "../components/Ipage";
 
 export default function DynamicPage({ pageContext }: any) {
   const loggedIn = useLoggedIn();
@@ -21,7 +22,7 @@ export default function DynamicPage({ pageContext }: any) {
   }, []);
 
   const { slug } = router.query;
-  console.log({ pageContext });
+  // console.log({ pageContext });
   if (!pageContext) return <ErrorComponent />;
   const pathname = router.query;
 
@@ -31,38 +32,46 @@ export default function DynamicPage({ pageContext }: any) {
       return <Home />;
     } else {
       console.log("loggedin but other page");
+      // here we can render other routing pages/components after LOGGEDIN as well
       if (pageContext) {
         const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
           pageContext;
-        // here we can render other routing pages/components after LOGGEDIN as well
-        return (
-          <iframe
-            src={sourceURL}
-            loading="eager"
-            // className="itest-iframe"
-            title={pageTitle}
-            // onLoad={loadHandler}
-          />
-        );
+        console.log({ pageContext });
+        if (isLive && !requiresLogin) {
+          return <IPage pageContext={pageContext} />;
+        }
+        // const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
+        //   pageContext;
+
+        // return (
+        //   <iframe
+        //     src={sourceURL}
+        //     loading="eager"
+        //     className="itest-iframe ipage-test"
+        //     title={pageTitle}
+        //     // onLoad={loadHandler}
+        //   />
+        // );
       }
     }
-    // Home page
   } else {
     // Other pages
+    // home page after loggedout
+
     console.log("logged out and other pages");
     if (pageContext) {
-      const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
-        pageContext;
-      // here we can render other routing pages/components after LOGGEDIN as well
-      return (
-        <iframe
-          src={sourceURL}
-          loading="eager"
-          // className="itest-iframe"
-          title={pageTitle}
-          // onLoad={loadHandler}
-        />
-      );
+      return <IPage pageContext={pageContext} />;
+      //   const { id, routedURL, sourceURL, pageTitle, requiresLogin, isLive } =
+      //     pageContext;
+      //   return (
+      //     <iframe
+      //       src={sourceURL}
+      //       loading="eager"
+      //       className="itest-iframe ipage-test"
+      //       title={pageTitle}
+      //       // onLoad={loadHandler}
+      //     />
+      //   );
     }
   }
 }

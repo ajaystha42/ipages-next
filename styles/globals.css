@@ -1,3 +1,81 @@
+/* html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    color: white;
+    background: white;
+  }
+} */
+
+/* .content-area.fh */
+.ipage-test .content-area.fh {
+  padding-top: 64px;
+  padding-bottom: 53px;
+  min-height: auto;
+  height: 100vh;
+}
+
+/* .ipage-test */
+.ipage-test {
+  overflow: hidden;
+}
+
+/* .navbar.navbar-expand-lg.navbar-light */
+.ipage-test .navbar.navbar-expand-lg.navbar-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+/* .footer */
+.ipage-test .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+/* .itest-iframe */
+.itest-iframe {
+  width: 100%;
+  border: 0;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+
+  height: 100vh !important;
+}
+
+body #__next {
+  height: 100%;
+}
